@@ -4,16 +4,16 @@ const { check, validationResult } = require('express-validator');
 const Employee = require('../model/employee');
 const auth = require('../middleware/auth');
 
-router.get('/', auth, async (req, res) => {
+router.get('/', async (req, res) => {
   const employees = await Employee.find().sort({ date: -1 })
   res.status(200).json(employees)
 })
 
-router.post('/', [auth, [
+router.post('/', [
   check('name', 'Name is required').not().isEmpty(),
   check('email', 'Enter valid email').isEmail(),
   check('gender', 'gender is required').not().isEmpty()
-]],
+],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -29,11 +29,11 @@ router.post('/', [auth, [
       await newEmployee.save();
       res.status(200).json(newEmployee)
     } catch (err) {
-      res.status(500).json({ msg: 'Server error' })
+      res.status(500).send('Server error')
     }
   });
 
-router.delete('/:empId', auth ,async (req, res) => {
+router.delete('/:empId' ,async (req, res) => {
   try {
     const employee = await Employee.findById(req.params.empId);
     if (!employee) {
@@ -42,7 +42,7 @@ router.delete('/:empId', auth ,async (req, res) => {
     await Employee.findByIdAndRemove(req.params.empId);
     res.json({ msg: 'Employee removed' })
   } catch (err) {
-    res.status(500).json({ error: err })
+    res.status(500).send('Server error')
   }
 })
 

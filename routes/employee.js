@@ -11,20 +11,20 @@ router.get('/', auth, async (req, res) => {
 
 router.post('/', [auth, [
   check('name', 'Name is required').not().isEmpty(),
-  check('phone', 'Phone number is required').not().isEmpty(),
-  check('email', 'Enter valid email').isEmail()
+  check('email', 'Enter valid email').isEmail(),
+  check('gender', 'gender is required').not().isEmpty()
 ]],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const { name, email, phone } = req.body;
+    const { name, email, gender } = req.body;
     try {
       const newEmployee = new Employee({
         name,
         email,
-        phone
+        gender
       });
       await newEmployee.save();
       res.status(200).json(newEmployee)
@@ -33,7 +33,7 @@ router.post('/', [auth, [
     }
   });
 
-router.delete('/:empId', async (req, res) => {
+router.delete('/:empId', auth ,async (req, res) => {
   try {
     const employee = await Employee.findById(req.params.empId);
     if (!employee) {

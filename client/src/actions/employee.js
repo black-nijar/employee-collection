@@ -25,7 +25,7 @@ export const addEmployee = (name, email, gender) => async dispatch => {
   };
   const body = JSON.stringify({ name, email, gender })
   try {
-    let res = await axios.post(`ç`, body, config);
+    let res = await axios.post(`http://localhost:5000/employee`, body, config);
     dispatch({
       type: ADD_EMPLOYEE,
       payload: res.data

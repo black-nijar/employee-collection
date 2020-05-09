@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 const EmployeeList = ({ getEmployees, employees: { employees }, deleteEmployee }) => {
   useEffect(() => {
     getEmployees()
-  }, [])
+  }, [getEmployees]);
+  
   console.log(employees)
   const empList = employees.length > 0 ? (
     employees.map(emp => {

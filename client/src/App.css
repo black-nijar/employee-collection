@@ -1,3 +1,33 @@
 .employee-detail {
   padding: 20px;
 }
+.landing {
+  width: 450px;
+  margin: auto;
+}
+.landing {
+  color: #fff;
+  height: 100%;
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 40px;
+}
+.navbar ul {
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  text-align: left;
+}
+.navbar a {
+  color: #fff;
+  padding: 0.45rem;
+  margin: 0 0.25rem;
+}
+.navbar {
+  margin-bottom: 50px;
+}

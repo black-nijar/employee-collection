@@ -7,9 +7,9 @@ const initialState = {
   user: null
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   const { type, payload } = action;
-  switch(type) {
+  switch (type) {
     case USER_LOADED:
       return {
         ...state,
@@ -29,7 +29,7 @@ export default function(state = initialState, action) {
     case ERROR:
     case LOGOUT:
       localStorage.removeItem('token');
-      return  {
+      return {
         ...state,
         token: null,
         isAuthenticated: false,

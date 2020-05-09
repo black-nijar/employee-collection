@@ -6,17 +6,16 @@ import { logout } from "../actions/auth";
 
 const NavBar = ({ auth: { isAuthenticated }, logout }) => {
   const authLinks = (
-    <ul className='right'>
+    <ul className='nav'>
 
-        <Link to="/" onClick={logout}>
-          <span className='logout'>Logout</span>
-        </Link>
-
+      <Link to="/" onClick={logout}>
+        <span className='logout'>Logout</span>
+      </Link>
     </ul>
   );
 
   const guestLinks = (
-    <ul className=''>
+    <ul className='nav'>
       <Link to='/register'>
         <h5>Register</h5>
       </Link>
@@ -29,8 +28,11 @@ const NavBar = ({ auth: { isAuthenticated }, logout }) => {
   return (
     <div>
       <nav className="navbar bg-dark">
+        <Link to="/" className="navbar-brand">
+          <h5>Welcome</h5>
+        </Link>
         {
-         <Fragment> { isAuthenticated ? authLinks : guestLinks}</Fragment>
+          <Fragment> {isAuthenticated ? authLinks : guestLinks}</Fragment>
         }
       </nav>
     </div>

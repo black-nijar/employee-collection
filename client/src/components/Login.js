@@ -3,23 +3,24 @@ import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import { login } from '../actions/auth'
 
-const Login = ({ login , isAuthenticated }) => {
+const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   })
-  const { email, password  } = formData;
+  const { email, password } = formData;
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = e => {
     e.preventDefault();
-    login(email,password)
+    login(email, password)
   };
   if (isAuthenticated) {
-    return <Redirect to='/employee'/>
+    return <Redirect to='/employee' />
   }
   return (
     <div>
       <form className='form-group' onSubmit={e => onSubmit(e)}>
+        <h3>Sign In</h3>
         <div className='form-group'>
           <label htmlFor='userEmail'>Email Id :</label>
           <input

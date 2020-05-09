@@ -1,21 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
-import { addEmployee } from '../actions/employee';
+import { addEmployee, getEmployees } from '../actions/employee';
 import EmployeeList from './EmployeeList';
 
-const AddEmployee = ({ addEmployee }) => {
-
+const AddEmployee = ({ addEmployee, getEmployees }) => {
+  useEffect(() => {
+    getEmployees();
+  })
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     gender: ''
   });
   const { name, email, gender } = formData;
-  
+
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = e => {
     e.preventDefault();
-    //console.log('formData', formData)
+
     addEmployee(name, email, gender);
     setFormData({
       name: '',
@@ -67,10 +69,10 @@ const AddEmployee = ({ addEmployee }) => {
             </button>
           </form>
         </div>
-        <EmployeeList/>
+        <EmployeeList />
       </div>
     </div>
   )
 }
 
-export default connect(null, { addEmployee })(AddEmployee)
+export default connect(null, { addEmployee, getEmployees })(AddEmployee)

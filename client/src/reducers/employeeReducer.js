@@ -6,10 +6,10 @@ const initState = {
   error: {}
 };
 
-export default function(state = initState, action) {
+export default function (state = initState, action) {
   const { payload, type } = action;
   switch (type) {
-    case GET_EMPLOYEES: 
+    case GET_EMPLOYEES:
       return {
         ...state,
         employees: payload,

@@ -4,7 +4,7 @@ import { ADD_EMPLOYEE, ERROR, GET_EMPLOYEES, DELETE_EMPLOYEE } from './actionTyp
 export const getEmployees = () => async dispatch => {
   try {
     let res = await axios.get('http://localhost:5000/employee');
-    console.log("res", res)
+    
     dispatch({
       type: GET_EMPLOYEES,
       payload: res.data,

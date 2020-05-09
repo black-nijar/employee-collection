@@ -7,7 +7,6 @@ const EmployeeList = ({ getEmployees, employees: { employees }, deleteEmployee }
     getEmployees()
   }, [getEmployees]);
   
-  console.log(employees)
   const empList = employees.length > 0 ? (
     employees.map(emp => {
       return (

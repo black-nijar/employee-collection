@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { Link , Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { register } from '../actions/auth'
 import { setAlert } from '../actions/alert'
 
@@ -16,18 +16,19 @@ const Register = ({ register, setAlert, isAuthenticated }) => {
   const onSubmit = e => {
     e.preventDefault();
     if (password !== password2) {
-        setAlert('Password do not match', 'danger')
+      setAlert('Password do not match', 'danger')
     } else {
       register({ name, email, password })
     }
   }
   if (isAuthenticated) {
-    return <Redirect to='/employee'/>
+    return <Redirect to='/employee' />
   }
   return (
     <div>
       <form className='form' onSubmit={e => onSubmit(e)}>
         <div className='form-group'>
+          <h3>Register</h3>
           <label htmlFor='userName'>Name :</label>
           <input
             className='form-control'
